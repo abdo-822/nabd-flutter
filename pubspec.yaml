@@ -1,0 +1,32 @@
+name: nabd_flutter
+description: "تطبيق نبض للتبرع بالدم - السودان"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  firebase_core: ^3.12.1
+  firebase_auth: ^5.5.1
+  cloud_firestore: ^5.6.5
+  firebase_messaging: ^15.2.4
+  flutter_local_notifications: ^18.0.1
+  google_fonts: ^6.2.1
+  provider: ^6.1.2
+  url_launcher: ^6.3.1
+  shared_preferences: ^2.3.5
+  intl: ^0.20.2
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
