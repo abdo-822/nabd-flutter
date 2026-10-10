@@ -315,7 +315,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     title: Text('رقم الهاتف للتواصل', style: TextStyle(fontWeight: FontWeight.bold, color: textColor)),
                     subtitle: Text(user?.phone.isNotEmpty == true ? user!.phone : 'غير محدد', style: TextStyle(color: textLightColor)),
                     trailing: const Icon(Icons.arrow_forward_ios, size: 14),
-                    onPressed: _showEditProfileDialog,
+                    onTap: _showEditProfileDialog,
                   ),
                   const Divider(height: 1),
 
@@ -324,7 +324,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     leading: const Icon(Icons.person_outline, color: AppColors.primary),
                     title: Text('تعديل البيانات الشخصية', style: TextStyle(fontWeight: FontWeight.bold, color: textColor)),
                     trailing: const Icon(Icons.arrow_forward_ios, size: 14),
-                    onPressed: _showEditProfileDialog,
+                    onTap: _showEditProfileDialog,
                   ),
                 ],
               ),

@@ -58,7 +58,7 @@ class ThemeProvider extends ChangeNotifier {
         appBarTheme: const AppBarTheme(
           backgroundColor: AppColors.cardLight,
           elevation: 0,
-          foregroundColor: AppColors.textLight,
+          foregroundColor: AppColors.text,
         ),
       );
     }
