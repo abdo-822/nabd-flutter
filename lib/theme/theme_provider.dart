@@ -24,43 +24,45 @@ class ThemeProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  ThemeData get themeData {
-    if (_isDark) {
-      return ThemeData(
-        brightness: Brightness.dark,
-        scaffoldBackgroundColor: AppColors.backgroundDark,
-        cardColor: AppColors.cardDark,
-        primaryColor: AppColors.primary,
-        colorScheme: const ColorScheme.dark(
-          primary: AppColors.primary,
-          secondary: AppColors.primary,
-          surface: AppColors.cardDark,
-        ),
-        textTheme: GoogleFonts.cairoTextTheme(ThemeData.dark().textTheme),
-        appBarTheme: const AppBarTheme(
-          backgroundColor: AppColors.cardDark,
-          elevation: 0,
-          foregroundColor: AppColors.textDark,
-        ),
-      );
-    } else {
-      return ThemeData(
-        brightness: Brightness.light,
-        scaffoldBackgroundColor: AppColors.backgroundLight,
-        cardColor: AppColors.cardLight,
-        primaryColor: AppColors.primary,
-        colorScheme: const ColorScheme.light(
-          primary: AppColors.primary,
-          secondary: AppColors.primary,
-          surface: AppColors.cardLight,
-        ),
-        textTheme: GoogleFonts.cairoTextTheme(ThemeData.light().textTheme),
-        appBarTheme: const AppBarTheme(
-          backgroundColor: AppColors.cardLight,
-          elevation: 0,
-          foregroundColor: AppColors.text,
-        ),
-      );
-    }
+  ThemeData get themeData => _isDark ? darkTheme : lightTheme;
+
+  ThemeData get darkTheme {
+    return ThemeData(
+      brightness: Brightness.dark,
+      scaffoldBackgroundColor: AppColors.backgroundDark,
+      cardColor: AppColors.cardDark,
+      primaryColor: AppColors.primary,
+      colorScheme: const ColorScheme.dark(
+        primary: AppColors.primary,
+        secondary: AppColors.primary,
+        surface: AppColors.cardDark,
+      ),
+      textTheme: GoogleFonts.cairoTextTheme(ThemeData.dark().textTheme),
+      appBarTheme: const AppBarTheme(
+        backgroundColor: AppColors.cardDark,
+        elevation: 0,
+        foregroundColor: AppColors.textDark,
+      ),
+    );
+  }
+
+  ThemeData get lightTheme {
+    return ThemeData(
+      brightness: Brightness.light,
+      scaffoldBackgroundColor: AppColors.backgroundLight,
+      cardColor: AppColors.cardLight,
+      primaryColor: AppColors.primary,
+      colorScheme: const ColorScheme.light(
+        primary: AppColors.primary,
+        secondary: AppColors.primary,
+        surface: AppColors.cardLight,
+      ),
+      textTheme: GoogleFonts.cairoTextTheme(ThemeData.light().textTheme),
+      appBarTheme: const AppBarTheme(
+        backgroundColor: AppColors.cardLight,
+        elevation: 0,
+        foregroundColor: AppColors.text,
+      ),
+    );
   }
 }
