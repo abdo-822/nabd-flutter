@@ -84,8 +84,9 @@ class DataService {
       'donations': FieldValue.increment(1),
     });
 
-    // إضافة المستجيب للطلب
+    // إضافة إضاءة للطلب
     final requestRef = _firestore.collection('requests').doc(requestId);
+    final requestSnap = await requestRef.get();
     await requestRef.update({
       'respondersCount': FieldValue.increment(1),
       'responders': FieldValue.arrayUnion([
@@ -100,7 +101,31 @@ class DataService {
       'lastUpdated': FieldValue.serverTimestamp(),
     });
 
+    // إرسال إشعار لصاحب الطلب
+    final requestData = requestSnap.data();
+    if (requestData != null) {
+      final requestOwnerId = requestData['createdBy'] as String?;
+      if (requestOwnerId != null && requestOwnerId.isNotEmpty && requestOwnerId != donorId) {
+        final donorPhone = donorInfo['phone'] ?? '';
+        final donorBlood = donorInfo['bloodType'] ?? '';
+        final notif = {
+          'id': 'notif_${DateTime.now().millisecondsSinceEpoch}',
+          'type': 'request_accepted',
+          'title': '🎉 استجاب أحدهم لطلبك!',
+          'body': 'متبرع من فصيلة $donorBlood وافق على التبرع لك'
+              '${donorPhone.isNotEmpty ? " – رقمه: $donorPhone" : ""}.',
+          'requestId': requestId,
+          'read': false,
+          'createdAt': DateTime.now().toIso8601String(),
+        };
+        await _firestore.collection('users').doc(requestOwnerId).update({
+          'notifications': FieldValue.arrayUnion([notif]),
+        });
+      }
+    }
+
     return true;
+
   }
 
   /// تحديث بيانات طلب دم
