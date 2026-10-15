@@ -144,6 +144,22 @@ class _RequestDetailScreenState extends State<RequestDetailScreen> {
       await auth.reloadUserData();
 
       if (!mounted) return;
+
+      // إظهار Snackbar بنجاح التبرع
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Row(
+            children: [
+              Icon(Icons.favorite, color: Colors.white, size: 20),
+              SizedBox(width: 8),
+              Text('❤️ تم التبرع بنجاح! جزاك الله خيراً', style: TextStyle(fontWeight: FontWeight.bold)),
+            ],
+          ),
+          backgroundColor: AppColors.success,
+          duration: Duration(seconds: 3),
+        ),
+      );
+
       showDialog(
         context: context,
         builder: (ctx) => AlertDialog(

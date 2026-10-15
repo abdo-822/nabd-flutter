@@ -157,6 +157,9 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                     } else if (type == 'request_accepted') {
                       iconData = Icons.handshake;
                       iconColor = AppColors.success;
+                    } else if (type == 'donation_cooldown') {
+                      iconData = Icons.favorite;
+                      iconColor = AppColors.primary;
                     } else if (type == 'system') {
                       iconData = Icons.info_outline;
                       iconColor = Colors.orange;

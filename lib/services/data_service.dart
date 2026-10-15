@@ -111,8 +111,8 @@ class DataService {
         final notif = {
           'id': 'notif_${DateTime.now().millisecondsSinceEpoch}',
           'type': 'request_accepted',
-          'title': '🎉 استجاب أحدهم لطلبك!',
-          'body': 'متبرع من فصيلة $donorBlood وافق على التبرع لك'
+          'title': '✅ تم استجابة طلب الدم!',
+          'body': 'متبرع من فصيلة $donorBlood استجاب لطلبك وتبرع بالدم'
               '${donorPhone.isNotEmpty ? " – رقمه: $donorPhone" : ""}.',
           'requestId': requestId,
           'read': false,
@@ -123,6 +123,23 @@ class DataService {
         });
       }
     }
+
+    // إرسال إشعار للمتبرع بتذكير 8 أسابيع
+    final nextDonationDate = DateTime.now().add(const Duration(days: 56));
+    final nextDonationStr =
+        '${nextDonationDate.year}-${nextDonationDate.month.toString().padLeft(2, '0')}-${nextDonationDate.day.toString().padLeft(2, '0')}';
+    final donorNotif = {
+      'id': 'notif_donor_${DateTime.now().millisecondsSinceEpoch}',
+      'type': 'donation_cooldown',
+      'title': '❤️ شكراً لتبرعك بالدم!',
+      'body': 'تم تسجيل تبرعك بنجاح. يمكنك التبرع مرة أخرى بعد 8 أسابيع في تاريخ: $nextDonationStr.',
+      'requestId': requestId,
+      'read': false,
+      'createdAt': DateTime.now().toIso8601String(),
+    };
+    await _firestore.collection('users').doc(donorId).update({
+      'notifications': FieldValue.arrayUnion([donorNotif]),
+    });
 
     return true;
 
