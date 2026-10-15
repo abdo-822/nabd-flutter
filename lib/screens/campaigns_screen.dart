@@ -39,7 +39,7 @@ class _CampaignsScreenState extends State<CampaignsScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('حملات التبرع بالدم'),
+        title: const Text('المتبرعون'),
         centerTitle: true,
       ),
       body: Column(
