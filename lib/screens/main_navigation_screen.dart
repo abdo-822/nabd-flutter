@@ -69,7 +69,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
             BottomNavigationBarItem(
               icon: Icon(Icons.format_list_bulleted_outlined),
               activeIcon: Icon(Icons.format_list_bulleted_rounded),
-              label: 'الطلبات',
+              label: 'المتبرعون',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.notifications_none_outlined),
